@@ -1,4 +1,4 @@
-name: Update JSON Counters
+name: Update language support counters in README
 
 on:
   push:
@@ -14,7 +14,7 @@ jobs:
 
     - name: Count words for each supported language and update README
       run: |
-        python update_language_support_counters.py
+        python scripts/update_language_support_counters.py
     - name: Commit changes
       run: |
         git config --local user.email "action@github.com"
