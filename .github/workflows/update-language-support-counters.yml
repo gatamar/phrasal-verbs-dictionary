@@ -1,0 +1,24 @@
+name: Update JSON Counters
+
+on:
+  push:
+    paths:
+      - '*.json'  # Only trigger when JSON files are updated
+
+jobs:
+  count-json-entries:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Count words for each supported language and update README
+      run: |
+        python update_language_support_counters.py
+    - name: Commit changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add README.md
+        git commit -m "Update language support counters"
+        git push
