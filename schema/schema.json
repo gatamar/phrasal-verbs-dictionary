@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "integer"
+      },
+      "base": {
+        "type": "string"
+      },
+      "pre_context": {
+          "type": "array",
+          "items": {
+              "type": "string"
+          }
+      },
+      "post_context": {
+        "type": "string"
+      },
+      "context": {
+        "type": "string"
+      },
+      "meaning": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "required": ["id", "base", "meaning"]
+  }
+}

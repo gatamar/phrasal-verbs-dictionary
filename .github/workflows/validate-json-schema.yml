@@ -1,0 +1,35 @@
+name: JSON Schema Validation
+
+on:
+  push:
+    branches:
+      - '*'
+  pull_request:
+    branches:
+      - '*'
+
+jobs:
+  validate-json-schema:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Node.js (since we'll use a Node package for validation)
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'  # or any version you prefer
+
+      # Step 3: Install Ajv CLI for JSON schema validation
+      - name: Install Ajv JSON Schema Validator
+        run: npm install -g ajv-cli
+
+      # Step 4: Validate JSON files against the schema
+      - name: Validate JSON files
+        run: |
+          for file in ./src/*.json; do
+            ajv validate -s ./schema/schema.json -d "$file" || exit 1
+          done
