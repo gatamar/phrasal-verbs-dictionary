@@ -3,7 +3,7 @@ name: Update language support counters in README
 on:
   push:
     paths:
-      - '*.json'  # Only trigger when JSON files are updated
+      - './src/*.json'
 
 jobs:
   count-json-entries:
